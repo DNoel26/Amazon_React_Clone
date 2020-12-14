@@ -1,5 +1,6 @@
 import React from 'react';
 import "./Checkout.css";
+import Subtotal from './Subtotal.jsx';
 
 function Checkout() {
     return (
@@ -20,6 +21,7 @@ function Checkout() {
             </div>
 
             <div className="checkout-right">
+                <Subtotal />
                 <h2>The subtotal will go here</h2>
             </div>
         </div>
