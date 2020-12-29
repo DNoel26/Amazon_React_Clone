@@ -5,8 +5,11 @@ import Home from "./Home.jsx";
 import Checkout from "./Checkout.jsx"
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Login from "./Login.jsx";
+import Payment from "./Payment.jsx";
 import { auth } from "./firebase.js";
 import { UseStateValue } from './StateProvider.jsx';
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 function App() {
 
@@ -54,6 +57,12 @@ function App() {
             <Header />
 
             <Checkout />
+          </Route>
+
+          <Route path="/payment">
+            <Header />
+            <Payment />
+            <h1>I am the payment route</h1>
           </Route>
 
           <Route path="/"> {/* DEFAULT OR HOME PATH MUST BE PLACED AT BOTTOM I.E. LAST ROUTE */}
