@@ -10,6 +10,9 @@ import { auth } from "./firebase.js";
 import { UseStateValue } from './StateProvider.jsx';
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import Orders from "./Orders.jsx";
+
+const promise = loadStripe("pk_test_51I3jCGDGzO9d02ojtoJ5EBPEMLU7N3UXIIvaiOfg77Lk1lAdt9POYoaHuzJXtGiLxqflNtRxwj6jBC3UnkehrE2s00virG7rFT");
 
 function App() {
 
@@ -61,8 +64,15 @@ function App() {
 
           <Route path="/payment">
             <Header />
-            <Payment />
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
             <h1>I am the payment route</h1>
+          </Route>
+
+          <Route path="/orders">
+            <Header />
+            <Orders />
           </Route>
 
           <Route path="/"> {/* DEFAULT OR HOME PATH MUST BE PLACED AT BOTTOM I.E. LAST ROUTE */}
