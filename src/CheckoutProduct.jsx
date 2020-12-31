@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './CheckoutProduct.css';
 import { UseStateValue } from './StateProvider.jsx';
 
-function CheckoutProduct({id, image, title, price, rating}) {
+function CheckoutProduct({id, image, title, price, rating, hide_button}) {
 
-    const [{basket}, dispatch] = UseStateValue();
+    const [{basket, user}, dispatch] = UseStateValue();
+
+    useEffect(() => {
+        
+        if(!user)
+        {
+            dispatch({
+
+                type: 'EMPTY_BASKET',
+            })
+        }
+    }, [user]);
 
     const remove_from_basket = () => {
 
@@ -35,10 +46,13 @@ function CheckoutProduct({id, image, title, price, rating}) {
                     })}
                 </div>
 
-                <button onClick={remove_from_basket}>Remove From Basket</button>
+                {!hide_button && (
+
+                    <button onClick={remove_from_basket}>Remove From Basket</button>
+                )}
             </div>
         </div>
     )
 }
 
-export default CheckoutProduct
+export default CheckoutProduct;

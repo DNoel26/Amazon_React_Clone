@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Product.css";
 import { UseStateValue } from './StateProvider.jsx';
 
 function Product({id, title, image, price, rating}) {
 
-    const [{basket}, dispatch] = UseStateValue();
+    const [{basket, user}, dispatch] = UseStateValue();
+    const [products, set_products] = useState([]);
+
+    useEffect(() => {
+        
+        if(!user)
+        {
+            dispatch({
+
+                type: 'EMPTY_BASKET',
+            })
+        }
+    }, [user]);
 
     // console.log("this is the basket >>>", basket);
 

@@ -30,6 +30,17 @@ function Payment() {
 
     useEffect(() => {
         
+        if(!user)
+        {
+            dispatch({
+
+                type: 'EMPTY_BASKET',
+            })
+        }
+    }, [user]);
+
+    useEffect(() => {
+        
         // generate the special stripe secret which allows us to charge a customer
         const get_client_secret = async () => {
 
@@ -41,6 +52,7 @@ function Payment() {
             }) 
             //.catch(err=>console.trace("ERROR, ",err))
             console.log(response);
+            console.log("USER BEFORE RESPONSE",user)
 
             set_client_secret(response.data.client_secret)
         }
@@ -64,18 +76,18 @@ function Payment() {
             }
         })
         .then(({paymentIntent}) => {
-
+            console.log("USER!!!",user.id)
             // paymentIntent = payment confirmation for Stripe
-            db.collection('users')
-            .doc(user?.id)
-            .collection('orders')
-            .doc(paymentIntent.id)
-            .set({
+            db.collection("users")
+                .doc(user?.uid)
+                .collection("orders")
+                .doc(paymentIntent.id)
+                .set({
 
-                basket: basket,
-                amount: paymentIntent.amount,
-                created: paymentIntent.created
-            })
+                    basket: basket,
+                    amount: paymentIntent.amount,
+                    created: paymentIntent.created
+                });
 
             set_succeeded(true);
             set_error(null);
@@ -86,7 +98,7 @@ function Payment() {
                 type: "EMPTY_BASKET"
             })
 
-            history.replace('/orders')
+            history.replace('/orders');
         })
     };
 
@@ -117,8 +129,8 @@ function Payment() {
 
                     <div className="payment-address">
                         <p>{user?.email}</p>
-                        <p>123 React Lane</p>
-                        <p>Los Angeles, CA</p>
+                        {user ? <p>123 React Lane</p> : " N/A"}
+                        {user ? <p>Los Angeles, CA</p> : ""}
                     </div>
                 </div>
 
