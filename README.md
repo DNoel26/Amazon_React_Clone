@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Hosted using Firebase cloud services. Click the link and create an account to continue: https://clone-905a7.web.app/
+
+Payments are processed using Stripe. Enter the following test data into the credit card field to process payment:
+
+Card Number: 4242424242424242
+
+Expiration Date: 42/4242
+
+CVV: 424
+
+Alternatively: Just enter 4, then 2, and repeat this until the entire form is filled out
+
 ## Available Scripts
 
 In the project directory, you can run:
