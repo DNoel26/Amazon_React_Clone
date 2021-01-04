@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Accessing and Using the site
+
 Hosted using Firebase cloud services. Click the link and create an account to continue: https://clone-905a7.web.app/
 
 Payments are processed using Stripe. Enter the following test data into the credit card field to process payment:
