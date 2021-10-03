@@ -25,7 +25,7 @@ function Checkout() {
                 <img src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg" alt="" className="checkout-ad"/>
             
                 <div>
-                    <h3>Hello, {user?.email ? user.email : "Guest"}</h3>
+                    <h3>Hello, {user?.email ? user.email : "Guest - Sign In to Purchase Items"}</h3>
                     <h2 className="checkout-title">Your Shopping Basket</h2>
 
                     {basket.map(item => (
